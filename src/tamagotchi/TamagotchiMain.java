@@ -16,12 +16,13 @@ public class TamagotchiMain {
         System.out.println("-------------NEW PET----------");
         pet.pet();
         System.out.println(pet.toString());
+        pet.displayStatistics();
         do {
             pet.taskChoice(pet.displayTaskMenu());
             System.out.println(pet.getMood());
-            System.out.println("-------------STATISTIC----------");
+            System.out.println("---------------------------------------------- STATISTIC ----------------------------------------------");
             pet.displayStatistics();
-            System.out.println("-------------PASSTIME----------");
+            System.out.println("-------------------------------------------- PASSTIME +24h --------------------------------------------");
             pet.passTime();
 //            alive = pet.checkAlive();
             isAlive = pet.isAlivePet();

@@ -17,6 +17,7 @@ public class Tamagotchi {
     private int cleanliness;
     private int tiredness = 0;
     private int hungriness = 0;
+    private boolean isAlive;
 
     /**
      * Constructor
@@ -110,17 +111,24 @@ public class Tamagotchi {
         this.hungriness = hungriness;
     }
 
-    @Override
-    public String toString() {
-        return "Pet's name is::" + this.name + ", pet type is:" + this.typeTamagotchi + ", your pet's sex is:" + this.sexe + ", pet's age:" + this.age;
+    public boolean isIsAlive() {
+        return isAlive;
     }
 
-    public void displayStatistics(){
-        System.out.println("HAPPINESS: " + this.happiness + " - " + " CLEANLINESS:" + this.cleanliness + " - " + " TIREDNESS:" + this.tiredness + " - " + " HUNGRINESS:" + this.hungriness + " - " + " WEIGHT:" + this.weight);
+    public void setIsAlive(boolean isAlive) {
+        this.isAlive = isAlive;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Pet's name is::" + this.name + ", pet type is:" + this.typeTamagotchi + ", your pet's sex is:" + this.sexe;
+    }
+
+    public void displayStatistics() {
+        System.out.println("HAPPINESS: " + this.happiness + " - " + " CLEANLINESS:" + this.cleanliness + " - " + " TIREDNESS:" + this.tiredness + " - " + " HUNGRINESS:" + this.hungriness + " - " + "\n"
+                            + " WEIGHT:" + this.weight + " - " + " AGE:" + this.age);
+    }
+
     /**
      *
      */
@@ -231,9 +239,12 @@ public class Tamagotchi {
             msj += this.getName() + " is Sad" + "[" + this.happiness + "]" + "\n";
         }
         if (this.weight > 11 && this.weight <= 14) {
-            msj += this.getName() + "your pet must go on a diet" + "[" + this.weight + "]" + "\n";
+            msj += this.getName() + " your pet must go on a diet" + "[" + this.weight + "]" + "\n";
         } else if (this.weight > 14) {
-            msj += this.getName() + "I’m sorry,your pet has died from overweight, from a heart attack" + "[" + this.weight + "]" + "\n";
+            msj += this.getName() + " I’m sorry,your pet has died from overweight, from a heart attack" + "[" + this.weight + "]" + "\n";
+        }
+        if (this.age > 9) {
+            msj += this.getName() + " my time has finally come, dead!!!!!" + "[" + this.age + "]" + "\n";
         }
         return msj;
     }
@@ -244,6 +255,7 @@ public class Tamagotchi {
     public void passTime() {
         this.hungriness++;
         this.cleanliness--;
+        this.age++;
 
         //****************** Tired
         if (this.tiredness == 10) {
@@ -315,14 +327,13 @@ public class Tamagotchi {
                 break;
         }
     }
-    
+
     public boolean isAlivePet() {
-        boolean isAlive;
-        isAlive = this.weight <= 14;
-        return isAlive;
+        boolean isAlivePet;
+        isAlivePet = this.weight <= 14 || this.age > 9;
+        return isAlivePet;
     }
-    
-    
+
     public int checkAlive() {
         int alive;
         if (this.weight > 14) {

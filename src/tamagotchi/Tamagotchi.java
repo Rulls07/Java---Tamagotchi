@@ -17,7 +17,6 @@ public class Tamagotchi {
     private int cleanliness;
     private int tiredness = 0;
     private int hungriness = 0;
-    private int food = 2;
 
     /**
      * Constructor
@@ -113,10 +112,15 @@ public class Tamagotchi {
 
     @Override
     public String toString() {
-        return "Pet's name is::" + this.name + ", pet type is:" + this.typeTamagotchi + ", your pet's sex is:" + this.sexe + ", pet's age:" + this.age + ", pet's weight:" + this.weight + "\n"
-                + ", happiness:" + happiness + ", cleanliness:" + cleanliness + ", tiredness:" + tiredness + ", hungriness:" + hungriness;
+        return "Pet's name is::" + this.name + ", pet type is:" + this.typeTamagotchi + ", your pet's sex is:" + this.sexe + ", pet's age:" + this.age;
     }
 
+    public void displayStatistics(){
+        System.out.println("HAPPINESS: " + this.happiness + " - " + " CLEANLINESS:" + this.cleanliness + " - " + " TIREDNESS:" + this.tiredness + " - " + " HUNGRINESS:" + this.hungriness + " - " + " WEIGHT:" + this.weight);
+    }
+    
+    
+    
     /**
      *
      */
@@ -274,26 +278,26 @@ public class Tamagotchi {
 
     /**
      * Display the task menu to the user
-     * @return 
+     *
+     * @return
      */
     public int displayTaskMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("What activity do you want to do with: " + this.getName());
+        System.out.println("[0] = Clean the pet, [1] = Play with the pet, [2] = Feed the pet, [3] = Pet diet");
         int choiseUser = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("[0] = Clean the pet, [1] = Play with the pet, [2] = Feed the pet, [3] = Pet diet");
         return choiseUser;
     }
 
     /**
      * user choice activity
+     *
      * @param choiseUser
      */
     public void taskChoice(int choiseUser) {
-        
-        while (choiseUser >= 0 && choiseUser < 4) {
-            displayTaskMenu();
-            switch (choiseUser) {
+
+        switch (choiseUser) {
             case 0:
                 clean();
                 break;
@@ -310,7 +314,22 @@ public class Tamagotchi {
                 System.out.println("Error");
                 break;
         }
+    }
+    
+    public boolean isAlivePet() {
+        boolean isAlive;
+        isAlive = this.weight <= 14;
+        return isAlive;
+    }
+    
+    
+    public int checkAlive() {
+        int alive;
+        if (this.weight > 14) {
+            alive = 1;
+        } else {
+            alive = 2;
         }
-        
+        return alive;
     }
 }

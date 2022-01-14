@@ -4,35 +4,30 @@ package tamagotchi;
  *
  * @author Rulls
  */
-
 public class TamagotchiMain {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int taskUser = 0;
+//        int alive = 0;
+        boolean isAlive;
         Tamagotchi pet = new Tamagotchi();
         System.out.println("-------------NEW PET----------");
         pet.pet();
-        System.out.println("-------------PASSTIME----------");
-        
-        System.out.println("-------------THE PET CONDITIONS----------");
-        System.out.println(pet.getMood());
-        System.out.println(pet.toString()); 
-        taskUser = pet.displayTaskMenu();
-        System.out.println("-------------TASK USER CHOICE----------");
-        pet.taskChoice(taskUser);
-       
-        System.out.println(pet.getMood());
-        
-        System.out.println("-------------PASSTIME----------"); 
-        pet.passTime();
-        pet.passTime();
-        pet.passTime();
-         System.out.println("-------------THE PET CONDITIONS----------");
-        System.out.println(pet.getMood());
-        
+        System.out.println(pet.toString());
+        do {
+            pet.taskChoice(pet.displayTaskMenu());
+            System.out.println(pet.getMood());
+            System.out.println("-------------STATISTIC----------");
+            pet.displayStatistics();
+            System.out.println("-------------PASSTIME----------");
+            pet.passTime();
+//            alive = pet.checkAlive();
+            isAlive = pet.isAlivePet();
+            
+        } while (isAlive);
+//            (alive == 2)
     }
-    
+
 }

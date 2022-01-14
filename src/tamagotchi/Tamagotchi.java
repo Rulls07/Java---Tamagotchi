@@ -18,7 +18,6 @@ public class Tamagotchi {
     private int tiredness = 0;
     private int hungriness = 0;
     private int food = 2;
-    private int birthWeight = 3;
 
     /**
      * Constructor
@@ -179,20 +178,20 @@ public class Tamagotchi {
         while (!sexAnimal.equalsIgnoreCase("FEMALE") && !sexAnimal.equalsIgnoreCase("MALE")) {
             System.out.println(sexAnimal);
             System.out.println("Incorrect entry, Enter the sex of the pet: (FEMALE/MALE)");
-            sexe = scanner.nextLine();
+            sexAnimal = scanner.nextLine();
         }
         System.out.println("Enter the type of tamagotchi:(DOG/CAT/BEAR)");
         String typeTama = scanner.nextLine();
         while (!typeTama.equalsIgnoreCase("DOG") && !typeTama.equalsIgnoreCase("CAT") && !typeTama.equalsIgnoreCase("BEAR")) {
             System.out.println(typeTama);
             System.out.println("Incorrect entry, enter the type of tamagotchi: (DOG/CAT/BEAR)");
-            sexe = scanner.nextLine();
+            typeTama = scanner.nextLine();
         }
 
         this.setName(nameAnimal);
         this.setTypeTamagotchi(typeTama);
         this.setSexe(sexAnimal);
-        this.setWeight(this.getWeight() + this.birthWeight);
+        this.setWeight(3);
         this.setAge(0);
 
         this.happiness += 5;
@@ -275,24 +274,26 @@ public class Tamagotchi {
 
     /**
      * Display the task menu to the user
+     * @return 
      */
-    public void displayTaskMenu() {
-        System.out.println("[0] = Clean the pet, [1] = Play with the pet, [2] = Feed the pet, [3] = Pet diet");
-    }
-
-    /**
-     * user choice activity
-     */
-    public void taskChoice() {
+    public int displayTaskMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("What activity do you want to do with: " + this.getName());
         int choiseUser = scanner.nextInt();
         scanner.nextLine();
+        System.out.println("[0] = Clean the pet, [1] = Play with the pet, [2] = Feed the pet, [3] = Pet diet");
+        return choiseUser;
+    }
 
+    /**
+     * user choice activity
+     * @param choiseUser
+     */
+    public void taskChoice(int choiseUser) {
+        
         while (choiseUser >= 0 && choiseUser < 4) {
             displayTaskMenu();
-        }
-        switch (choiseUser) {
+            switch (choiseUser) {
             case 0:
                 clean();
                 break;
@@ -309,5 +310,7 @@ public class Tamagotchi {
                 System.out.println("Error");
                 break;
         }
+        }
+        
     }
 }

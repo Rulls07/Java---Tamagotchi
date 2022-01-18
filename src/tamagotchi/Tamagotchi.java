@@ -333,7 +333,7 @@ public class Tamagotchi {
 
     public boolean isAlivePet() {
         boolean isAlivePet;
-        isAlivePet = this.weight <= 14 && this.age <= 10;
+        isAlivePet = this.weight <= 14 && this.age <= 10 && this.weight >= -3 ;
         return isAlivePet;
     }
 
